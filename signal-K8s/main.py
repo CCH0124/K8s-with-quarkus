@@ -27,8 +27,10 @@ def by_system(signum, frame):
 
 if __name__ == '__main__':
     # Register handler
+    print("start process.")
     signal.signal(signal.SIGINT, by_user)
     signal.signal(signal.SIGTERM, by_system)
     while True:
         print('waiting...')
         sleep(500)
+        print('after...')

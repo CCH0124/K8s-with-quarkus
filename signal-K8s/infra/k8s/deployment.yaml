@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: single-simple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: single-app
+        image: docker.io/cch0124/single-simple:latest-arm
+        imagePullPolicy: Always
+        command: ["python", "/app/main.py"]
+      terminationGracePeriodSeconds: 400
