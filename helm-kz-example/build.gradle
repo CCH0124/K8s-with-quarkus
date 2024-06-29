@@ -23,6 +23,7 @@ dependencies {
     implementation 'org.apache.camel.quarkus:camel-quarkus-microprofile-health'
     implementation 'org.apache.camel.quarkus:camel-quarkus-kubernetes'
     implementation 'org.apache.camel.quarkus:camel-quarkus-bean'
+    // implementation 'org.apache.camel.quarkus:camel-quarkus-timer'
     // implementation 'io.quarkus:quarkus-kubernetes-client'
     implementation 'org.bouncycastle:bcpkix-jdk18on'
     implementation 'io.quarkus:quarkus-rest-jackson'

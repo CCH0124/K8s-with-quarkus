@@ -2,6 +2,7 @@ package org.cch;
 
 import org.apache.camel.component.reactive.streams.api.CamelReactiveStreamsService;
 import org.cch.service.ConsumerService;
+import org.jboss.logging.Logger;
 import org.reactivestreams.Publisher;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -17,8 +18,8 @@ public class KubernetesResource {
     @Inject
     ConsumerService consumerService;
 
-    @Inject
-    CamelReactiveStreamsService camelReactiveStreamsService;
+    // @Inject
+    // CamelReactiveStreamsService camelReactiveStreamsService;
 
     @GET
     public void getNodeInfo() {
