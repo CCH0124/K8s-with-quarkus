@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.apache.camel.quarkus:camel-quarkus-kubernetes'
     implementation 'io.quarkus:quarkus-rest-jackson'
     implementation 'org.apache.camel.quarkus:camel-quarkus-micrometer'
+    implementation 'io.smallrye.reactive:smallrye-reactive-messaging-camel'
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-rest'
     testImplementation 'io.quarkus:quarkus-junit5'
