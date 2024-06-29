@@ -1,2 +1,5 @@
 greeting:
   message: "hello"
+quarkus:
+  kubernetes-client:
+    api-server-url: https://lab.cch.com:6500

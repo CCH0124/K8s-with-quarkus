@@ -89,3 +89,9 @@ Easily start your REST Web Services
 Monitor your application's health using SmallRye Health
 
 [Related guide section...](https://quarkus.io/guides/smallrye-health)
+
+## K3d
+
+```bash
+$ k3d cluster create -c infra/k3d/config.yaml --servers-memory 2G --agents-memory 2G
+```
