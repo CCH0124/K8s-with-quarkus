@@ -13,3 +13,23 @@ quarkus:
   jib:
     base-native-image: quay.io/quarkus/quarkus-micro-image:2.0
     working-directory: /home/jboss
+  kubernetes:
+    deployment-kind: Deployment
+    replicas: 1
+    strategy: rolling-update
+    service-type: cluster-ip
+    prometheus:
+      annotations: true
+      generate-service-monitor: true
+    namespace: default
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 10m
+      limits:
+        memory: 256Mi
+        cpu: 100m
+    ingress:
+      expose: false
+    service-account: ${quarkus.application.name}
+    output-directory: kubernetes
