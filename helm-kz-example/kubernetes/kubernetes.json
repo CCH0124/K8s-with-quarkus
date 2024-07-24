@@ -4,9 +4,9 @@
   "metadata" : {
     "annotations" : {
       "app.quarkus.io/quarkus-version" : "3.12.0",
-      "app.quarkus.io/commit-id" : "738eeb1776ed011fd54724db7163978a63aa0985",
+      "app.quarkus.io/commit-id" : "114e1edd8ea579fc9f3d1eb1a644575df0f0c735",
       "app.quarkus.io/vcs-uri" : "https://github.com/CCH0124/K8s-with-quarkus.git",
-      "app.quarkus.io/build-timestamp" : "2024-06-29 - 16:24:36 +0000"
+      "app.quarkus.io/build-timestamp" : "2024-07-11 - 11:04:05 +0000"
     },
     "labels" : {
       "app.kubernetes.io/name" : "helm-kz-example",
@@ -63,9 +63,9 @@
   "metadata" : {
     "annotations" : {
       "app.quarkus.io/quarkus-version" : "3.12.0",
-      "app.quarkus.io/commit-id" : "738eeb1776ed011fd54724db7163978a63aa0985",
+      "app.quarkus.io/commit-id" : "114e1edd8ea579fc9f3d1eb1a644575df0f0c735",
       "app.quarkus.io/vcs-uri" : "https://github.com/CCH0124/K8s-with-quarkus.git",
-      "app.quarkus.io/build-timestamp" : "2024-06-29 - 16:24:36 +0000"
+      "app.quarkus.io/build-timestamp" : "2024-07-11 - 11:04:05 +0000"
     },
     "labels" : {
       "app.kubernetes.io/name" : "helm-kz-example",
@@ -91,9 +91,9 @@
   "metadata" : {
     "annotations" : {
       "app.quarkus.io/quarkus-version" : "3.12.0",
-      "app.quarkus.io/commit-id" : "738eeb1776ed011fd54724db7163978a63aa0985",
+      "app.quarkus.io/commit-id" : "114e1edd8ea579fc9f3d1eb1a644575df0f0c735",
       "app.quarkus.io/vcs-uri" : "https://github.com/CCH0124/K8s-with-quarkus.git",
-      "app.quarkus.io/build-timestamp" : "2024-06-29 - 16:24:36 +0000"
+      "app.quarkus.io/build-timestamp" : "2024-07-11 - 11:04:05 +0000"
     },
     "labels" : {
       "app.kubernetes.io/name" : "helm-kz-example",
@@ -122,9 +122,9 @@
   "metadata" : {
     "annotations" : {
       "app.quarkus.io/quarkus-version" : "3.12.0",
-      "app.quarkus.io/commit-id" : "738eeb1776ed011fd54724db7163978a63aa0985",
+      "app.quarkus.io/commit-id" : "114e1edd8ea579fc9f3d1eb1a644575df0f0c735",
       "app.quarkus.io/vcs-uri" : "https://github.com/CCH0124/K8s-with-quarkus.git",
-      "app.quarkus.io/build-timestamp" : "2024-06-29 - 16:24:36 +0000"
+      "app.quarkus.io/build-timestamp" : "2024-07-11 - 11:04:05 +0000"
     },
     "labels" : {
       "app.kubernetes.io/name" : "helm-kz-example",
@@ -138,8 +138,8 @@
     "replicas" : 1,
     "selector" : {
       "matchLabels" : {
-        "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-        "app.kubernetes.io/name" : "helm-kz-example"
+        "app.kubernetes.io/name" : "helm-kz-example",
+        "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
       }
     },
     "strategy" : {
@@ -153,14 +153,14 @@
       "metadata" : {
         "annotations" : {
           "app.quarkus.io/quarkus-version" : "3.12.0",
-          "app.quarkus.io/commit-id" : "738eeb1776ed011fd54724db7163978a63aa0985",
+          "app.quarkus.io/commit-id" : "114e1edd8ea579fc9f3d1eb1a644575df0f0c735",
           "app.quarkus.io/vcs-uri" : "https://github.com/CCH0124/K8s-with-quarkus.git",
-          "app.quarkus.io/build-timestamp" : "2024-06-29 - 16:24:36 +0000"
+          "app.quarkus.io/build-timestamp" : "2024-07-11 - 11:04:05 +0000"
         },
         "labels" : {
           "app.kubernetes.io/managed-by" : "quarkus",
-          "app.kubernetes.io/version" : "1.0.0-SNAPSHOT",
-          "app.kubernetes.io/name" : "helm-kz-example"
+          "app.kubernetes.io/name" : "helm-kz-example",
+          "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
         },
         "namespace" : "default"
       },
