@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
     app.kubernetes.io/managed-by: quarkus
   name: simple-app
-  namespace: default
+  namespace: team-a
 spec:
   ports:
     - name: http
@@ -37,7 +37,7 @@ metadata:
     app.kubernetes.io/version: 1.0.0-SNAPSHOT
     app.kubernetes.io/managed-by: quarkus
   name: simple-app
-  namespace: default
+  namespace: team-a
 spec:
   replicas: 1
   selector:
