@@ -1,0 +1,96 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  namespace: team-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: database
+  template:
+    metadata:
+      labels:
+        tier: database
+    spec:
+      initContainers:
+      - name: wave0-example
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Accept: application/json"
+          - "-H"
+          - "Content-Type: application/json"
+          - "--data"
+          - '{"hook": "sync-wave 0, postgresql deployment."}'
+          - "http://webhook-app/webhook"
+      containers:
+        - name: postgresql
+          image: nginx:latest
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: upgrade-schema
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
+  namespace: team-a
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: wave-example
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Accept: application/json"
+          - "-H"
+          - "Content-Type: application/json"
+          - "--data"
+          - '{"hook": "wave 1 and pre-sync, upgrade-schema "}'
+          - "http://webhook-app/webhook"
+      containers:
+        - name: upgrade-schema
+          image: alpine:latest
+          command: ["sleep", "8"]
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: restore-data
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  namespace: team-a
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: wave-example
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Accept: application/json"
+          - "-H"
+          - "Content-Type: application/json"
+          - "--data"
+          - '{"hook": "wave 1, restore-data "}'
+          - "http://webhook-app/webhook"
+      containers:
+        - name: restore-data
+          image: alpine:latest
+          command: ["sleep", "15"]
+      restartPolicy: Never

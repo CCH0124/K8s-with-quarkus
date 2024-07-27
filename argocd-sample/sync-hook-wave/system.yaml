@@ -1,0 +1,129 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  namespace: team-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: backend
+  template:
+    metadata:
+      labels:
+        tier: backend
+    spec:
+      initContainers:
+      - name: wave0-example
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Accept: application/json"
+          - "-H"
+          - "Content-Type: application/json"
+          - "--data"
+          - '{"hook": "sync-wave 2, backend deployment."}'
+          - "http://webhook-app/webhook"
+      containers:
+        - name: Deployment
+          image: nginx:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  namespace: team-a
+spec:
+  selector:
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  namespace: team-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      initContainers:
+      - name: wave0-example
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Accept: application/json"
+          - "-H"
+          - "Content-Type: application/json"
+          - "--data"
+          - '{"hook": "sync-wave 3, frontend deployment."}'
+          - "http://webhook-app/webhook"
+      containers:
+        - name: frontend
+          image: nginx:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  namespace: team-a
+spec:
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: slack-info
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+  namespace: team-a
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: postsync-example
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "-H"
+          - "Accept: application/json"
+          - "-H"
+          - "Content-Type: application/json"
+          - "--data"
+          - '{"hook": "PostSync"}'
+          - "http://webhook-app/webhook"
+      restartPolicy: Never
+  backoffLimit: 1
