@@ -39,7 +39,7 @@ kind: Job
 metadata:
   name: upgrade-schema
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: sync
     argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
@@ -71,7 +71,8 @@ kind: Job
 metadata:
   name: restore-data
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook: sync
+    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
@@ -89,7 +90,7 @@ spec:
           - "-H"
           - "Content-Type: application/json"
           - "--data"
-          - '{"hook": "wave 1, restore-data "}'
+          - '{"hook": "wave 2, restore-data "}'
           - "http://webhook-app/webhook"
       containers:
         - name: restore-data
