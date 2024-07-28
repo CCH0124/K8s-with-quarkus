@@ -39,9 +39,7 @@ kind: Job
 metadata:
   name: upgrade-schema
   annotations:
-    argocd.argoproj.io/hook: sync
     argocd.argoproj.io/sync-wave: "1"
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
   template:
@@ -71,9 +69,7 @@ kind: Job
 metadata:
   name: restore-data
   annotations:
-    argocd.argoproj.io/hook: sync
     argocd.argoproj.io/sync-wave: "2"
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
   template:
