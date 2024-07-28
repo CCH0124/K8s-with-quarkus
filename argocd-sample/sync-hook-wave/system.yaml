@@ -105,6 +105,7 @@ metadata:
   name: slack-info
   annotations:
     argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
@@ -123,7 +124,7 @@ spec:
           - "-H"
           - "Content-Type: application/json"
           - "--data"
-          - '{"hook": "PostSync"}'
+          - '{"hook": "PostSync, send notification"}'
           - "http://webhook-app/webhook"
       restartPolicy: Never
   backoffLimit: 1

@@ -70,7 +70,6 @@ metadata:
   name: restore-data
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
