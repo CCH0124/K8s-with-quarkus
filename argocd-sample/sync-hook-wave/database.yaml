@@ -88,7 +88,7 @@ spec:
           - "-H"
           - "Content-Type: application/json"
           - "--data"
-          - '{"hook": "wave 2, restore-data "}'
+          - '{"hook": "wave 1 PostSync, restore-data "}'
           - "http://webhook-app/webhook"
       containers:
         - name: restore-data
