@@ -37,7 +37,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: upgrade-schema
+  name: upgrade-schema
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "1"
@@ -68,7 +68,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: restore-data
+  name: restore-data
   annotations:
     argocd.argoproj.io/sync-wave: "1"
   namespace: team-a
