@@ -31,7 +31,7 @@ spec:
           - '{"hook": "sync-wave 2, backend deployment."}'
           - "http://webhook-app/webhook"
       containers:
-        - name: Deployment
+        - name: backend
           image: nginx:latest
 ---
 apiVersion: v1

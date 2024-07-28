@@ -41,6 +41,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
   template:
@@ -71,6 +72,7 @@ metadata:
   name: restore-data
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
   template:
