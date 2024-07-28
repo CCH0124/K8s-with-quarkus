@@ -37,9 +37,8 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: upgrade-schema
+  name: upgrade-schema
   annotations:
-    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "1"
   namespace: team-a
 spec:
@@ -68,9 +67,10 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: restore-data
+  name: restore-data
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
   namespace: team-a
 spec:
   template:
@@ -87,7 +87,7 @@ spec:
           - "-H"
           - "Content-Type: application/json"
           - "--data"
-          - '{"hook": "wave 1, restore-data "}'
+          - '{"hook": "wave 1 PostSync, restore-data "}'
           - "http://webhook-app/webhook"
       containers:
         - name: restore-data
