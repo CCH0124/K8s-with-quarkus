@@ -1,0 +1,11 @@
+config:
+  enabled: true
+  application:
+    a1:
+      b: "testing"
+
+podSecurityContext:
+  fsGroup: 2000
+  runAsNonRoot: true
+  runAsUser: 1001
+  runAsGroup: 1001

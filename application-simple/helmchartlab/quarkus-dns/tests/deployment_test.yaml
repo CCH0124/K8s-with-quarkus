@@ -1,0 +1,68 @@
+suite: test deployment
+values:
+  - ../env/values-test.yaml
+templates:
+  - templates/deployment.yaml
+  - templates/configmap.yaml
+release:
+  name: test-release
+  namespace: test
+chart:
+  version:  0.1.0+test
+  appVersion: 1.16.0
+tests:
+  - it: should pass all kinds of assertion
+    template: templates/deployment.yaml
+    documentIndex: 0
+    asserts:
+      - equal:
+          path: metadata.labels["app.kubernetes.io/managed-by"]
+          value: Helm
+      - equal:
+          path: metadata.labels["app.kubernetes.io/name"]
+          value: quarkus-dns
+      - isNotEmpty:
+          path: spec.template.metadata.annotations["checksum/configmap-env"]
+      - isNotEmpty:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].image
+      - isNotEmpty:
+          path: spec.template.spec.serviceAccountName
+      - matchRegex:
+          path: metadata.name
+          pattern: ^.*-quarkus-dns$
+      - contains:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].ports
+          content:
+            containerPort: 8080
+            protocol: TCP
+            name: http
+      - notContains:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].ports
+          content:
+            containerPort: 80
+      - isNotEmpty:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].livenessProbe
+      - isNotEmpty:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].readinessProbe
+      - isNotEmpty:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].resources
+      - isSubset:
+          path: spec.template.spec.containers[?(@.name == "quarkus-dns")].securityContext
+          content:
+            privileged: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+      - isSubset:
+          path: spec.template.spec.securityContext
+          content:
+            fsGroup: 2000
+            runAsNonRoot: true
+            runAsUser: 1001
+            runAsGroup: 1001
+      - isKind:
+          of: Deployment
+      - isAPIVersion:
+          of: apps/v1

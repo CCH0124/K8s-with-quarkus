@@ -1,0 +1,7 @@
+config:
+  enabled: true
+  application: 
+    dns:
+      server: "10.42.1.178"
+
+securityContext: {}

@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+
+images:
+- name: registry.hub.docker.com/cch0124/quarkus-dns
+  newName: registry.hub.docker.com/cch0124/quarkus-dns
+  newTag: day19-dev
+namespace: dev
+patches: 
+  - target: 
+      version: v1
+      group: apps
+      kind: Deployment
+      name: quarkus-dns
+    patch: |- 
+      - op: replace 
+        path: /spec/revisionHistoryLimit
+        value: 3
+      - op: add 
+        path: /metadata/labels/enviroment
+        value: dev
+  - path: deployment-resource-patch.yaml
+configMapGenerator:
+- name: quarkus-dns-config
+  behavior: replace
+  files:
+    - ./application.yaml
