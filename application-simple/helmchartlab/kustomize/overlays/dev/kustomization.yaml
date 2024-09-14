@@ -8,6 +8,9 @@ images:
   newName: registry.hub.docker.com/cch0124/quarkus-dns
   newTag: day19-dev
 namespace: team-a
+replicas:
+- count: 1
+  name: quarkus-dns
 patches: 
   - target: 
       version: v1
