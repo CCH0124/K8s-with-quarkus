@@ -90,4 +90,4 @@ spec:
           emptyDir: {}
         - name: config-volume
           configMap:
-            name: test-quarkus-dns-config
+            name: quarkus-dns-config
