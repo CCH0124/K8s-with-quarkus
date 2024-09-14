@@ -4,7 +4,7 @@ resources:
 - ../../base
 
 images:
-- name: registry.hub.docker.com/cch0124/helmchartlab
+- name: registry.hub.docker.com/cch0124/quarkus-dns
   newName: registry.hub.docker.com/cch0124/helmchartlab
   newTag: day16
 namespace: team-a
