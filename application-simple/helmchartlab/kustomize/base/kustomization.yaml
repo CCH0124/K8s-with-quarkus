@@ -12,8 +12,8 @@ commonAnnotations:
   app.quarkus.io/createded-by: quarkus
   app.quarkus.io/quarkus-version: 3.14.2
 images:
-- name: registry.hub.docker.com/cch0124/quarkus-dns
-  newName: registry.hub.docker.com/cch0124/quarkus-dns
+- name: registry.hub.docker.com/cch0124/helmchartlab
+  newName: registry.hub.docker.com/cch0124/helmchartlab
   newTag: day19
 namePrefix: cch-
 replicas:
