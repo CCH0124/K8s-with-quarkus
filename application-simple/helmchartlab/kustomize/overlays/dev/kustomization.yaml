@@ -6,7 +6,7 @@ resources:
 images:
 - name: registry.hub.docker.com/cch0124/quarkus-dns
   newName: registry.hub.docker.com/cch0124/quarkus-dns
-  newTag: day19-dev
+  newTag: day19
 namespace: team-a
 replicas:
 - count: 1
